@@ -1,13 +1,9 @@
 <template>
-  <div
-    class="
-      login-view-container
-      d-flex
-      justify-content-center
-      align-items-center
-    "
-  >
-    <LoginBox msg="Welcome to Your Vue.js App" />
+  <div class="container-fluid login-view-container">
+    <div class="login-screen-top-space"></div>
+    <div class="d-flex justify-content-center align-items-center">
+      <LoginBox msg="Welcome to Your Vue.js App" />
+    </div>
   </div>
 </template>
 
@@ -26,5 +22,8 @@ export default {
 <style scoped lang="scss">
 .login-view-container {
   height: 100vh;
+}
+.login-screen-top-space {
+  height: 10vh;
 }
 </style>
