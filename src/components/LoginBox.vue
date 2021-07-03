@@ -7,7 +7,7 @@
             type="text"
             class="form-control login-input-box"
             id="exampleInputEmail1"
-            aria-describedby="emailHelp"
+            aria-describedby="usernameHelp"
             placeholder="Kullanıcı Adı"
             v-model="formData.username"
           />
@@ -87,19 +87,5 @@ export default {
 }
 .login-box-btn:hover {
   color: rgba(0, 0, 0, 0.5);
-}
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
 }
 </style>
