@@ -18,7 +18,6 @@
     "highcharts": "^9.1.2",
     "node-sass": "^4.14.1",
     "vue": "^3.1.2",
-    "vue-highcharts": "^0.2.0",
     "vue-material-design-icons": "^4.12.1",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"

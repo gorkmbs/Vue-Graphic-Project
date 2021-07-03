@@ -2,7 +2,7 @@
   <div class="container-fluid login-view-container">
     <div class="login-screen-top-space"></div>
     <div class="d-flex justify-content-center align-items-center">
-      <LoginBox msg="Welcome to Your Vue.js App" />
+      <LoginBox />
     </div>
   </div>
 </template>

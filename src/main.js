@@ -1,7 +1,6 @@
 import { createApp } from "vue";
 
 import Highcharts from "highcharts";
-import VueHighcharts from "vue-highcharts";
 
 import App from "./App.vue";
 import router from "./router";
@@ -27,5 +26,6 @@ import "./assets/sass/index.sass";
 createApp(App)
   .use(store)
   .use(router)
-  .use(VueHighcharts, { Highcharts })
+  .use(Highcharts)
+
   .mount("#app");
