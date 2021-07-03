@@ -1,4 +1,8 @@
 import { createApp } from "vue";
+
+import Highcharts from "highcharts";
+import VueHighcharts from "vue-highcharts";
+
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
@@ -20,4 +24,8 @@ import "./assets/sass/index.sass";
 // // Optionally install the BootstrapVue icon components plugin
 // Vue.use(IconsPlugin);
 
-createApp(App).use(store).use(router).mount("#app");
+createApp(App)
+  .use(store)
+  .use(router)
+  .use(VueHighcharts, { Highcharts })
+  .mount("#app");
