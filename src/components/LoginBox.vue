@@ -1,7 +1,7 @@
 <template>
   <div class="login-box-container m-4 p-4 d-flex align-items-center">
     <div class="container">
-      <form>
+      <form @submit.prevent="handleLoginSubmit">
         <div class="">
           <input
             type="text"
@@ -28,7 +28,9 @@
             >Şifremi Hatırlamıyorum</router-link
           >
         </div>
-
+        <p v-if="isError" class="text-danger error-message">
+          {{ errorMsg }}
+        </p>
         <button type="submit" class="btn login-box-btn m-0 p-2">
           <i class="fas fa-arrow-right"></i> GİRİŞ
         </button>
@@ -38,16 +40,43 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
   name: "LoginBox",
   props: {},
   data() {
     return {
+      isError: false,
+      errorMsg:
+        "Lütfen kullanıcı adınızı ve parolanızı doğru girip tekrar deneyiniz.",
       formData: {
         username: "",
         password: "",
       },
     };
+  },
+  computed: {
+    ...mapState(["loginStatus"]),
+  },
+  mounted() {
+    if (this.loginStatus === true) {
+      this.$router.push("/dashboard");
+    }
+  },
+  methods: {
+    ...mapActions(["userLoggedIn"]),
+    handleLoginSubmit() {
+      if (
+        this.formData.username === "limonist" &&
+        this.formData.password === "limonist"
+      ) {
+        this.isError = false;
+        this.userLoggedIn();
+        this.$router.push("/dashboard");
+      } else {
+        this.isError = true;
+      }
+    },
   },
 };
 </script>
@@ -87,5 +116,8 @@ export default {
 }
 .login-box-btn:hover {
   color: rgba(0, 0, 0, 0.5);
+}
+.error-message {
+  font-size: 10px;
 }
 </style>

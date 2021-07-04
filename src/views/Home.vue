@@ -2,7 +2,13 @@
   <div
     class="d-flex justify-content-center align-items-center home-view-container"
   >
-    <button class="btn btn-success" @click="startButtonPressed">BAŞLAT</button>
+    <div class="container-fluid">
+      <h1>Kullanıcı Adı: limonist</h1>
+      <h1>Parola: limonist</h1>
+      <button class="btn btn-success" @click="startButtonPressed">
+        BAŞLAT
+      </button>
+    </div>
   </div>
 </template>
 
