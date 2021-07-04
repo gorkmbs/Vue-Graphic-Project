@@ -1,6 +1,6 @@
 <template>
   <figure class="highcharts-figure">
-    <div id="container1"></div>
+    <div id="container1" class="column-drilldown-chart m-0 p-0"></div>
   </figure>
 </template>
 

@@ -5,6 +5,7 @@ export default {
   loginStatus: false,
   pieDrilldownProperties,
   columnDrilldownProperties,
+  windowWidth: 1366,
   username: "limonist",
   password: "limonist",
 };

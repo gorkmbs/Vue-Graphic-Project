@@ -1,6 +1,7 @@
 export default {
   chart: {
     type: "column",
+    width: 500,
   },
   title: {
     text: "Browser market shares. January, 2018",
