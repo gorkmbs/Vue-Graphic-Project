@@ -43,8 +43,8 @@
           class="container"
           :style="{ height: '10vh', color: 'rgba(0,0,0,0.5)' }"
         >
-          <p class="m-0 p-1">Anasayfa</p>
-          <p class="m-0 p-1">Datatable</p>
+          <button class="btn m-0 p-1" @click="showHighcharts">Anasayfa</button>
+          <button class="btn m-0 p-1" @click="showDatatable">Datatable</button>
         </div>
         <div :style="{ height: '35vh', color: 'black' }"></div>
         <div
@@ -56,7 +56,10 @@
           <button class="btn m-1 p-1" @click="userLogout">Çıkış</button>
         </div>
       </div>
-      <div class="d-flex align-items-top flex-column">
+      <div
+        class="d-flex align-items-top flex-column"
+        v-if="dashboardScreen === 'highcharts'"
+      >
         <div class="d-flex justify-content-center dashboard-plots-container">
           <div
             class="d-flex justify-content-center plots-view-container m-1 p-0"
@@ -64,6 +67,20 @@
             <div class="d-flex justify-content-around m-0 p-4 flex-wrap">
               <div class="m-4 p-0"><PieDrilldown /></div>
               <div class="m-4 p-0"><ColumnDrilldown /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="d-flex align-items-top flex-column"
+        v-if="dashboardScreen === 'datatable'"
+      >
+        <div class="d-flex justify-content-center dashboard-plots-container">
+          <div
+            class="d-flex justify-content-center plots-view-container m-1 p-0"
+          >
+            <div class="d-flex justify-content-center m-0 p-0">
+              <div class="m-4 p-0"><Datatable /></div>
             </div>
           </div>
         </div>
@@ -98,6 +115,7 @@
 // @ is an alias to /src
 import ColumnDrilldown from "@/components/ColumnDrilldown.vue";
 import PieDrilldown from "@/components/PieDrilldown.vue";
+import Datatable from "@/components/Datatable.vue";
 import { mapState, mapActions } from "vuex";
 import image001 from "@/assets/image001.png";
 
@@ -106,6 +124,7 @@ export default {
   components: {
     ColumnDrilldown,
     PieDrilldown,
+    Datatable,
   },
   data() {
     return {
@@ -113,7 +132,11 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["windowWidthUpdate", "userLoggedOut"]),
+    ...mapActions([
+      "windowWidthUpdate",
+      "userLoggedOut",
+      "dashboardViewChange",
+    ]),
     updateWindowWidth() {
       this.windowWidthUpdate({ width: window.innerWidth });
     },
@@ -123,9 +146,15 @@ export default {
     userLogout() {
       this.userLoggedOut();
     },
+    showHighcharts() {
+      this.dashboardViewChange({ view: "highcharts" });
+    },
+    showDatatable() {
+      this.dashboardViewChange({ view: "datatable" });
+    },
   },
   computed: {
-    ...mapState(["loginStatus", "windowWidth"]),
+    ...mapState(["loginStatus", "windowWidth", "dashboardScreen"]),
   },
   mounted() {
     this.windowWidthUpdate({ width: window.innerWidth });

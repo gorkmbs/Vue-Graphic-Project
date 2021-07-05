@@ -3,6 +3,7 @@ import pieDrilldownProperties from "../data/pieDrilldown";
 
 export default {
   loginStatus: false,
+  dashboardScreen: "highcharts",
   pieDrilldownProperties,
   columnDrilldownProperties,
   windowWidth: 1366,

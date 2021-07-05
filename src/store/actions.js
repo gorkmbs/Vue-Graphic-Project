@@ -8,4 +8,7 @@ export default {
   windowWidthUpdate: ({ commit }, payload) => {
     commit("updateWindowWidth", payload);
   },
+  dashboardViewChange: ({ commit }, payload) => {
+    commit("changeDashboard", payload);
+  },
 };

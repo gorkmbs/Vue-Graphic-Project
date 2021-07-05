@@ -8,4 +8,7 @@ export default {
   updateWindowWidth: (state, { width }) => {
     state.windowWidth = width;
   },
+  changeDashboard: (state, { view }) => {
+    state.dashboardScreen = view;
+  },
 };
