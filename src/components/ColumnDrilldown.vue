@@ -1,13 +1,17 @@
 <template>
   <figure class="highcharts-figure">
-    <div id="container1" class="column-drilldown-chart m-0 p-0"></div>
+    <div
+      id="container1"
+      :style="{ width: windowWidth > 1303 ? '40vw' : '80vw' }"
+      class="container-fluid"
+    ></div>
   </figure>
 </template>
 
 <script>
 import Highcharts from "highcharts";
 import Exporting from "highcharts/modules/exporting";
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 // Initialize exporting module.
 Exporting(Highcharts);
 import Drilldown from "highcharts/modules/drilldown";
@@ -18,6 +22,11 @@ export default {
       loadHighchart() {
         // Create the chart
         Highcharts.chart("container1", {
+          chart: {
+            type: "column",
+            // width: 500,
+            // width: this.windowWidth > 768 ? 500 : this.windowWidth - 250,
+          },
           ...this.columnDrilldownProperties,
         });
       },
@@ -25,10 +34,12 @@ export default {
   },
   computed: {
     ...mapGetters(["columnDrilldownProperties"]),
+    ...mapState(["windowWidth"]),
   },
 
   mounted() {
     this.loadHighchart();
+    // window.addEventListener("resize", this.loadHighchart);
   },
 };
 </script>
@@ -41,8 +52,10 @@ export default {
   margin: 1em auto;
 }
 
-#container {
+#container1 {
   height: 400px;
+  min-width: 310px;
+  max-width: 500px;
 }
 
 .highcharts-data-table table {

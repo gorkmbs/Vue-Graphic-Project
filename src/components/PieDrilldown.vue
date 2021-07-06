@@ -1,9 +1,11 @@
 <template>
   <figure class="highcharts-figure">
-    <div id="container2" class="column-drilldown-chart m-0 p-0"></div>
+    <div
+      id="container2"
+      :style="{ width: windowWidth > 1303 ? '40vw' : '80vw' }"
+      class="container-fluid"
+    ></div>
   </figure>
-
-  >
 </template>
 
 <script>
@@ -21,6 +23,10 @@ export default {
       loadHighchart() {
         // Create the chart
         Highcharts.chart("container2", {
+          chart: {
+            type: "pie",
+            // width: 500,
+          },
           ...this.pieDrilldownProperties,
         });
       },
@@ -43,6 +49,12 @@ export default {
   min-width: 320px;
   max-width: 660px;
   margin: 1em auto;
+}
+
+#container2 {
+  height: 400px;
+  min-width: 310px;
+  max-width: 500px;
 }
 
 .highcharts-data-table table {

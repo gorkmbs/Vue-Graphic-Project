@@ -1,8 +1,4 @@
 export default {
-  chart: {
-    type: "pie",
-    width: 500,
-  },
   title: {
     text: "Browser market shares. January, 2018",
   },
