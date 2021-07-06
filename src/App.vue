@@ -4,7 +4,11 @@
     <router-link to="/about">About</router-link>
     <router-link to="/login">Login</router-link>
   </div> -->
-  <div class="container-fluid m-0 p-0" @click="resetCounter">
+  <div
+    class="container-fluid m-0 p-0"
+    @click="resetCounter"
+    @keyup="resetCounter"
+  >
     <router-view />
   </div>
   <div

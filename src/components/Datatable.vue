@@ -25,9 +25,15 @@
           </div>
         </div>
         <div class="d-flex">
-          <button class="btn text-muted datatable-buttons m-1 p-1">
+          <button
+            class="btn text-muted datatable-buttons m-1 p-1"
+            @click="filterItems"
+          >
             Filtrele</button
-          ><button class="btn text-muted datatable-buttons m-1 p-1">
+          ><button
+            class="btn text-muted datatable-buttons m-1 p-1"
+            @click="resetFilter"
+          >
             Temizle
           </button>
         </div>
@@ -39,7 +45,24 @@
           <tr>
             <th
               scope="col"
-              v-for="(headers, index) in datatableItems.headers"
+              v-for="(headers, index) in shownDatatableItems.headers"
+              :key="index"
+              :style="{ color: 'orange' }"
+            >
+              <input
+                type="text"
+                class="form-control login-input-box"
+                aria-describedby="serch"
+                placeholder="Filtrele"
+                v-model="searchItems[index]"
+                @keyup="filterItems"
+              />
+            </th>
+          </tr>
+          <tr>
+            <th
+              scope="col"
+              v-for="(headers, index) in shownDatatableItems.headers"
               :key="index"
               :style="{ color: 'orange' }"
             >
@@ -48,14 +71,25 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(items, index) in datatableItems.items" :key="index">
-            <th scope="row" :style="{ color: 'orange', fontSize: '10px' }">
-              {{ items.th }}
+          <tr v-for="items in shownDatatableItems.items" :key="items.id">
+            <th scope="row">
+              <router-link
+                :to="`/datatable/details/id/${items.id}`"
+                :style="{ color: 'orange', fontSize: '10px' }"
+              >
+                {{ items.th }}
+              </router-link>
             </th>
             <td v-for="(td, index2) in items.td" :key="index2">{{ td }}</td>
           </tr>
         </tbody>
       </table>
+      <div
+        v-if="shownDatatableItems.items.length === 0"
+        class="container-fluid"
+      >
+        <h1>Eşleşme bulunamadı...</h1>
+      </div>
     </div>
   </div>
 </template>
@@ -66,7 +100,37 @@ export default {
   data() {
     return {
       datatableItems,
+      shownDatatableItems: { ...datatableItems },
+      searchItems: Array.from({ length: datatableItems.headers.length }, () => {
+        return "";
+      }),
     };
+  },
+  methods: {
+    filterItems() {
+      this.shownDatatableItems.items = this.datatableItems.items.filter(
+        (item) =>
+          item.th.toUpperCase().includes(this.searchItems[0].toUpperCase())
+      );
+      for (let i = 1; i < this.searchItems.length; i++) {
+        this.shownDatatableItems.items = this.shownDatatableItems.items.filter(
+          (item) =>
+            item.td[i - 1]
+              .toUpperCase()
+              .includes(this.searchItems[i].toUpperCase())
+        );
+      }
+    },
+    resetFilter() {
+      this.searchItems = Array.from(
+        { length: datatableItems.headers.length },
+        () => {
+          let emptyString = "";
+          return emptyString;
+        }
+      );
+      this.filterItems();
+    },
   },
 };
 </script>

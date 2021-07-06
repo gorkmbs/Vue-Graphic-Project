@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Login from "../views/Login.vue";
 import Dashboard from "../views/Dashboard.vue";
 import Home from "../views/Home.vue";
+import DatatableDetails from "../views/DatatableDetails.vue";
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: "/dashboard",
     name: "Dashboard",
     component: Dashboard,
+  },
+  {
+    path: "/datatable/details/id/:id",
+    name: "DatatableDetails",
+    component: DatatableDetails,
   },
 ];
 
