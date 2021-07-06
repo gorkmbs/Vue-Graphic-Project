@@ -105,7 +105,8 @@
         class="d-flex justify-content-start"
         :style="{
           width: windowWidth - 150 + 'px',
-          transform: 'translate(150px, 0px)',
+          transform:
+            windowWidth > 950 || showSidebar ? 'translate(150px, 0px)' : '',
           background: 'rgba(255,255,255,1)',
         }"
       >
