@@ -49,8 +49,8 @@ export default {
         this.timer--;
         this.continueCounter();
       } else {
-        window.alert("timout");
         this.userLoggedOut();
+        window.alert("timout");
       }
     },
     resetCounter() {
