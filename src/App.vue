@@ -50,7 +50,9 @@ export default {
         this.continueCounter();
       } else {
         this.userLoggedOut();
-        window.alert("timout");
+        setTimeout(() => {
+          window.alert("timout");
+        }, 500);
       }
     },
     resetCounter() {
