@@ -9,20 +9,17 @@
 </template>
 
 <script>
-import Highcharts from "highcharts";
-import Exporting from "highcharts/modules/exporting";
 import { mapState } from "vuex";
-// Initialize exporting module.
-Exporting(Highcharts);
-import Drilldown from "highcharts/modules/drilldown";
-Drilldown(Highcharts);
 
 export default {
+  props: {
+    Highcharts: Function,
+  },
   data() {
     return {
       loadHighchart() {
         // Create the chart
-        Highcharts.chart("container2", {
+        this.Highcharts.chart("container2", {
           chart: {
             type: "pie",
             // width: 500,

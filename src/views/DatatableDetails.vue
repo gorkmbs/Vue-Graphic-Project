@@ -22,17 +22,13 @@
     :style="{ height: '100vh' }"
     v-if="!loginStatus"
   >
-    <div class="container">
-      <h1>Not logged in</h1>
-      <button class="btn btn-primary" @click="backToLoginScreen">
-        GİRİŞ EKRANINA DÖN
-      </button>
-    </div>
+    <Unauthorized />
   </div>
 </template>
 
 <script>
 import datatableItems from "@/data/datatableItems";
+import Unauthorized from "@/components/Unauthorized.vue";
 import { mapState } from "vuex";
 
 export default {
@@ -40,6 +36,9 @@ export default {
     return {
       detailPageFor: datatableItems.items[this.$route.params.id],
     };
+  },
+  components: {
+    Unauthorized,
   },
   methods: {
     backToDatatablePage() {

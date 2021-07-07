@@ -9,19 +9,18 @@
 </template>
 
 <script>
-import Highcharts from "highcharts";
-import Exporting from "highcharts/modules/exporting";
 import { mapGetters, mapState } from "vuex";
-// Initialize exporting module.
-Exporting(Highcharts);
-import Drilldown from "highcharts/modules/drilldown";
-Drilldown(Highcharts);
+
 export default {
+  props: {
+    Highcharts: Function,
+  },
+
   data() {
     return {
       loadHighchart() {
         // Create the chart
-        Highcharts.chart("container1", {
+        this.Highcharts.chart("container1", {
           chart: {
             type: "column",
             // width: 500,

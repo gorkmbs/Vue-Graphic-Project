@@ -3,22 +3,7 @@
     class="dashboard-view-container container-fluid m-0 p-0"
     v-if="!loginStatus"
   >
-    <div
-      class="
-        d-flex
-        justify-content-center
-        align-items-center
-        unauthorized-view-container
-      "
-    >
-      <div class="container-fluid">
-        <h1>401 Unauthorized</h1>
-
-        <button class="btn btn-primary" @click="backToLoginScreen">
-          GİRİŞ EKRANINA DÖN
-        </button>
-      </div>
-    </div>
+    <Unauthorized />
   </div>
   <div
     class="dashboard-view-container container-fluid m-0 p-0"
@@ -41,32 +26,12 @@
     </div>
     <div class="d-flex justify-content-between">
       <div class="dashboard-sidebar-container" :class="siderbarPosition()">
-        <div
-          class="d-flex align-items-center justify-content-center"
-          :style="{ height: '15vh' }"
-        >
-          <img
-            :src="logo"
-            class="img-fluid m-2"
-            :style="{ maxWidth: '120px' }"
-          />
-        </div>
-        <div
-          class="container"
-          :style="{ height: '10vh', color: 'rgba(0,0,0,0.5)' }"
-        >
-          <button class="btn m-0 p-1" @click="showHighcharts">Anasayfa</button>
-          <button class="btn m-0 p-1" @click="showDatatable">Datatable</button>
-        </div>
-        <div :style="{ height: '35vh', color: 'black' }"></div>
-        <div
-          class="container"
-          :style="{ height: '10vh', color: 'rgba(0,0,0,0.5)' }"
-        >
-          <button class="btn m-1 btn-dashboard-left-bottom">Test User</button>
-          <button class="btn m-1 btn-dashboard-left-bottom">Role</button>
-          <button class="btn m-1 p-1" @click="userLogout">Çıkış</button>
-        </div>
+        <DashboardSidebar
+          :logo="logo"
+          :showHighcharts="showHighcharts"
+          :showDatatable="showDatatable"
+          :userLogout="userLogout"
+        />
       </div>
       <div
         class="d-flex align-items-top flex-column"
@@ -78,8 +43,12 @@
             class="d-flex justify-content-center plots-view-container m-1 p-0"
           >
             <div class="d-flex justify-content-around m-0 p-2 flex-wrap">
-              <div class="m-1 p-0"><PieDrilldown /></div>
-              <div class="m-1 p-0"><ColumnDrilldown /></div>
+              <div class="m-1 p-0">
+                <PieDrilldown :Highcharts="Highcharts" />
+              </div>
+              <div class="m-1 p-0">
+                <ColumnDrilldown :Highcharts="Highcharts" />
+              </div>
             </div>
           </div>
         </div>
@@ -100,29 +69,7 @@
         </div>
       </div>
     </div>
-    <footer class="fixed-bottom">
-      <div
-        class="d-flex justify-content-start"
-        :style="{
-          width: windowWidth - 150 + 'px',
-          transform:
-            windowWidth > 950 || showSidebar ? 'translate(150px, 0px)' : '',
-          background: 'rgba(255,255,255,1)',
-        }"
-      >
-        <p class="m-1 p-1 text-dark">
-          Copyright © 2021
-          <span :style="{ color: 'rgba(0,50,200,1)' }"
-            ><a
-              class="linkWithoutBlueUnderline"
-              href="https://www.limonist.com/"
-              target="_blank"
-              >Limonist</a
-            ></span
-          >
-        </p>
-      </div>
-    </footer>
+    <DashboardFooter :showSidebar="showSidebar" :windowWidth="windowWidth" />
   </div>
 </template>
 
@@ -130,21 +77,35 @@
 // @ is an alias to /src
 import ColumnDrilldown from "@/components/ColumnDrilldown.vue";
 import PieDrilldown from "@/components/PieDrilldown.vue";
+import Unauthorized from "@/components/Unauthorized.vue";
+import DashboardFooter from "@/components/DashboardFooter.vue";
+import DashboardSidebar from "@/components/DashboardSidebar.vue";
 import Datatable from "@/components/Datatable.vue";
 import { mapState, mapActions } from "vuex";
 import image001 from "@/assets/image001.png";
+
+import Highcharts from "highcharts";
+import Exporting from "highcharts/modules/exporting";
+// Initialize exporting module.
+Exporting(Highcharts);
+import Drilldown from "highcharts/modules/drilldown";
+Drilldown(Highcharts);
 
 export default {
   name: "Dashboard",
   components: {
     ColumnDrilldown,
     PieDrilldown,
+    Unauthorized,
     Datatable,
+    DashboardFooter,
+    DashboardSidebar,
   },
   data() {
     return {
       logo: image001,
       showSidebar: false,
+      Highcharts: Highcharts,
     };
   },
   methods: {
@@ -156,9 +117,7 @@ export default {
     updateWindowWidth() {
       this.windowWidthUpdate({ width: window.innerWidth });
     },
-    backToLoginScreen() {
-      window.location.pathname = "/login";
-    },
+
     userLogout() {
       this.userLoggedOut();
     },
@@ -180,6 +139,9 @@ export default {
       return sidebarClass;
     },
     toggleMenu() {
+      if (this.showSidebar === false) {
+        window.scrollTo(0, 0);
+      }
       this.showSidebar = !this.showSidebar;
     },
     closeMenu() {
@@ -249,16 +211,5 @@ export default {
   height: 8vh;
   border-right: 3px solid rgba(0, 0, 0, 0.1);
   border-left: 3px solid rgba(0, 0, 0, 0.1);
-}
-.linkWithoutBlueUnderline {
-  color: rgba(0, 50, 200, 1);
-  text-decoration: none;
-}
-.linkWithoutBlueUnderline:hover {
-  color: rgba(100, 100, 255, 1);
-  text-decoration: none;
-}
-.unauthorized-view-container {
-  height: 100vh;
 }
 </style>
