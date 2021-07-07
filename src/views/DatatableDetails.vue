@@ -45,6 +45,9 @@ export default {
     backToDatatablePage() {
       this.$router.push("/dashboard");
     },
+    backToLoginScreen() {
+      window.location.pathname = "/login";
+    },
   },
   computed: {
     ...mapState(["loginStatus"]),
