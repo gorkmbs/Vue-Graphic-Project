@@ -1,6 +1,7 @@
 {
   "name": "limonist-test-project",
-  "version": "0.1.0",
+  "version": "0.8.3",
+  "author": "@tamzirtapoz Görkem Buğra SARAÇ",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

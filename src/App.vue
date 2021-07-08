@@ -23,7 +23,7 @@
       color: 'red',
     }"
   >
-    {{ timer }}
+    {{ timeReamaining }}
   </div>
 </template>
 
@@ -32,7 +32,11 @@ import { mapState, mapActions } from "vuex";
 
 export default {
   data() {
-    return { timer: 60, timerTimeoutFunc: Function };
+    return {
+      finishTime: Date.now() + 60 * 1000,
+      timeReamaining: 60,
+      timerTimeoutFunc: Function,
+    };
   },
   computed: {
     ...mapState(["loginStatus"]),
@@ -45,8 +49,8 @@ export default {
       }
     },
     counterDown() {
-      if (this.timer > 0) {
-        this.timer--;
+      if (this.finishTime - Date.now() > 0) {
+        this.timeReamaining = Math.ceil((this.finishTime - Date.now()) / 1000);
         this.continueCounter();
       } else {
         this.userLoggedOut();
@@ -57,7 +61,8 @@ export default {
     },
     resetCounter() {
       clearTimeout(this.timerTimeoutFunc);
-      this.timer = 60;
+      this.finishTime = Date.now() + 60 * 1000;
+      this.timeReamaining = Math.ceil((this.finishTime - Date.now()) / 1000);
       this.continueCounter();
     },
   },
