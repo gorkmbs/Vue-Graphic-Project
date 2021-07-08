@@ -53,6 +53,7 @@ export default {
         this.timeReamaining = Math.ceil((this.finishTime - Date.now()) / 1000);
         this.continueCounter();
       } else {
+        this.timeReamaining = 0;
         this.userLoggedOut();
         setTimeout(() => {
           window.alert("timout");
