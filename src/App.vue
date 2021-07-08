@@ -34,7 +34,7 @@ export default {
   data() {
     return {
       finishTime: Date.now() + 60 * 1000,
-      timeReamaining: 60,
+      timeReamaining: 59,
       timerTimeoutFunc: Function,
     };
   },
@@ -50,10 +50,9 @@ export default {
     },
     counterDown() {
       if (this.finishTime - Date.now() > 0) {
-        this.timeReamaining = Math.ceil((this.finishTime - Date.now()) / 1000);
+        this.timeReamaining = Math.floor((this.finishTime - Date.now()) / 1000);
         this.continueCounter();
       } else {
-        this.timeReamaining = 0;
         this.userLoggedOut();
         setTimeout(() => {
           window.alert("timout");
@@ -63,7 +62,9 @@ export default {
     resetCounter() {
       clearTimeout(this.timerTimeoutFunc);
       this.finishTime = Date.now() + 60 * 1000;
-      this.timeReamaining = Math.ceil((this.finishTime - Date.now()) / 1000);
+      this.timeReamaining = Math.floor(
+        (this.finishTime - Date.now()) / 1000 - 1
+      );
       this.continueCounter();
     },
   },
