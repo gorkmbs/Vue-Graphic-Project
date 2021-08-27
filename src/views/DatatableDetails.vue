@@ -8,7 +8,7 @@
     }"
     v-if="loginStatus"
   >
-    <button class="btn btn-secondary" @click="backToDatatablePage">Geri</button>
+    <button class="btn btn-secondary" @click="backToDatatablePage">Back</button>
   </div>
   <div
     class="d-flex justify-content-center align-items-center"

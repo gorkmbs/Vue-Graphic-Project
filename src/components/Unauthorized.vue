@@ -11,7 +11,7 @@
       <h1>401 Unauthorized</h1>
 
       <button class="btn btn-primary" @click="backToLoginScreen">
-        GİRİŞ EKRANINA DÖN
+        Go Back To Home
       </button>
     </div>
   </div>

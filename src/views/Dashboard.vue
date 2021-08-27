@@ -82,7 +82,7 @@ import DashboardFooter from "@/components/DashboardFooter.vue";
 import DashboardSidebar from "@/components/DashboardSidebar.vue";
 import Datatable from "@/components/Datatable.vue";
 import { mapState, mapActions } from "vuex";
-import image001 from "@/assets/image001.png";
+import image001 from "@/assets/tamzirtapoz.png";
 
 import Highcharts from "highcharts";
 import Exporting from "highcharts/modules/exporting";

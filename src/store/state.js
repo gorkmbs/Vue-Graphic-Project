@@ -7,6 +7,6 @@ export default {
   pieDrilldownProperties,
   columnDrilldownProperties,
   windowWidth: 1366,
-  username: "limonist",
-  password: "limonist",
+  username: "tamzirtapoz",
+  password: "tamzirtapoz",
 };

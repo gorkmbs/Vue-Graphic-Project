@@ -4,8 +4,8 @@
       <div>
         <p class="text-dark">
           <i class="fas fa-calendar-alt m-1" :style="{ color: 'orange' }"></i>
-          <i class="fas fa-angle-left" :style="{ color: 'orange' }"></i> 24
-          Şubat 2021
+          <i class="fas fa-angle-left" :style="{ color: 'orange' }"></i> 24 Feb
+          2021
           <i class="fas fa-angle-right" :style="{ color: 'orange' }"></i>
         </p>
       </div>
@@ -15,13 +15,13 @@
       >
         <div class="d-flex">
           <div class="p-1 datatable-start-point" :style="{ width: '200px' }">
-            Başlangıç Tarihi
+            Start Date
           </div>
           <div class="p-1 datatable-split-point" :style="{ width: '40px' }">
             -
           </div>
           <div class="p-1 datatable-end-point" :style="{ width: '200px' }">
-            Bitiş Tarihi
+            End Date
           </div>
         </div>
         <div class="d-flex">
@@ -29,12 +29,12 @@
             class="btn text-muted datatable-buttons m-1 p-1"
             @click="filterItems"
           >
-            Filtrele</button
+            Filter</button
           ><button
             class="btn text-muted datatable-buttons m-1 p-1"
             @click="resetFilter"
           >
-            Temizle
+            Clear
           </button>
         </div>
       </div>
@@ -53,7 +53,7 @@
                 type="text"
                 class="form-control login-input-box"
                 aria-describedby="serch"
-                placeholder="Filtrele"
+                placeholder="Filter"
                 v-model="searchItems[index]"
                 @keyup="filterItems"
               />
@@ -88,7 +88,7 @@
         v-if="shownDatatableItems.items.length === 0"
         class="container-fluid"
       >
-        <h1>Eşleşme bulunamadı...</h1>
+        <h1>No Match...</h1>
       </div>
     </div>
   </div>

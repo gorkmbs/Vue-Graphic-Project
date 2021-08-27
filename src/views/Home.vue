@@ -3,11 +3,9 @@
     class="d-flex justify-content-center align-items-center home-view-container"
   >
     <div class="container-fluid">
-      <h1>Kullanıcı Adı: limonist</h1>
-      <h1>Parola: limonist</h1>
-      <button class="btn btn-success" @click="startButtonPressed">
-        BAŞLAT
-      </button>
+      <h1>Username: tamzirtapoz</h1>
+      <h1>Password: tamzirtapoz</h1>
+      <button class="btn btn-success" @click="startButtonPressed">Start</button>
     </div>
   </div>
 </template>

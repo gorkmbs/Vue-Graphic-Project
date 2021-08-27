@@ -11,15 +11,15 @@ let numbers = [
 
 export default {
   headers: [
-    "ŞUBE İSMİ",
-    "Z-RAPORU",
-    "NAKİT",
-    "KREDİ KARTI",
-    "YEMEK KARTI",
-    "DÖVİZ",
-    "MOBİL ÖDEME",
-    "MASRAF",
-    "FARK",
+    "COMPANY",
+    "Z-REPORT",
+    "CASH",
+    "CREDIT CARD",
+    "FOOD CARD",
+    "FOREIGN CURRENCY",
+    "MOBILE PAYMENT",
+    "COST",
+    "DIFFERENCE",
   ],
   items: [
     { id: 0, th: "TEST 1", td: numbers },

@@ -14,9 +14,9 @@
         <span :style="{ color: 'rgba(0,50,200,1)' }"
           ><a
             class="linkWithoutBlueUnderline"
-            href="https://www.limonist.com/"
+            href="https://gorkem-bugra-sarac.netlify.app/"
             target="_blank"
-            >Limonist</a
+            >tamzirtapoz</a
           ></span
         >
       </p>

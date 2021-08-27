@@ -8,7 +8,7 @@
             class="form-control login-input-box"
             id="exampleInputEmail1"
             aria-describedby="usernameHelp"
-            placeholder="Kullanıcı Adı"
+            placeholder="Username"
             v-model="formData.username"
           />
         </div>
@@ -18,21 +18,21 @@
             type="password"
             class="form-control login-input-box"
             id="exampleInputPassword1"
-            placeholder="Şifre"
+            placeholder="Password"
             v-model="formData.password"
           />
         </div>
         <div class="login-box-line mb-4"></div>
         <div class="mb-3">
           <router-link class="linkWithoutBlueUnderline" to="/"
-            >Şifremi Hatırlamıyorum</router-link
+            >Can't remember password ?</router-link
           >
         </div>
         <p v-if="isError" class="text-danger error-message">
           {{ errorMsg }}
         </p>
         <button type="submit" class="btn login-box-btn m-0 p-2">
-          <i class="fas fa-arrow-right"></i> GİRİŞ
+          <i class="fas fa-arrow-right"></i> ENTER
         </button>
       </form>
     </div>
@@ -50,13 +50,15 @@ export default {
       errorMsg:
         "Lütfen kullanıcı adınızı ve parolanızı doğru girip tekrar deneyiniz.",
       formData: {
-        username: "",
-        password: "",
+        username: "tamzirtapoz",
+        password: "tamzirtapoz",
       },
     };
   },
   computed: {
     ...mapState(["loginStatus"]),
+    ...mapState(["username"]),
+    ...mapState(["password"]),
   },
   mounted() {
     if (this.loginStatus === true) {
@@ -67,8 +69,8 @@ export default {
     ...mapActions(["userLoggedIn"]),
     handleLoginSubmit() {
       if (
-        this.formData.username === "limonist" &&
-        this.formData.password === "limonist"
+        this.formData.username === this.username &&
+        this.formData.password === this.password
       ) {
         this.isError = false;
         this.userLoggedIn();
