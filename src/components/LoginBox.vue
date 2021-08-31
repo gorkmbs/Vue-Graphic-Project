@@ -48,7 +48,7 @@ export default {
     return {
       isError: false,
       errorMsg:
-        "Lütfen kullanıcı adınızı ve parolanızı doğru girip tekrar deneyiniz.",
+        "Invalid username or password ! Please check your username and password.",
       formData: {
         username: "tamzirtapoz",
         password: "tamzirtapoz",
